@@ -16,6 +16,8 @@ gem 'puma', '~> 3.0'
 gem 'faker', '~> 1.7', '>= 1.7.3'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors', :require => 'rack/cors'
+# Allows you to generate your JSON in an object-oriented
+gem 'active_model_serializers'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
