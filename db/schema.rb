@@ -27,12 +27,13 @@ ActiveRecord::Schema.define(version: 20170305143045) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "full_name"
-    t.string   "email"
-    t.integer  "phone"
-    t.integer  "role"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "full_name",  limit: 100,             null: false
+    t.string   "email",      limit: 100,             null: false
+    t.bigint   "phone"
+    t.integer  "role",                   default: 0, null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
   add_foreign_key "artworks", "users"
