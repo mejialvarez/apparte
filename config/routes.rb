@@ -5,7 +5,7 @@ Rails.application.routes.draw do
         resources :talks, only: [:create]
       end
 
-      resources :talks, only: [:show] do
+      resources :talks, only: [:index, :show] do
         resources :messages, only: [:create]
       end
     end

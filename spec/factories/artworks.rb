@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :artwork do
-    association :user
+    association :user, factory: :artist
 
     name { Faker::Name.name }
     description { Faker::Lorem.characters(500) }

@@ -60,6 +60,17 @@ RSpec.configure do |config|
 
   #Including to test requests
   config.include Request::JsonHelpers, type: :controller
+
+  # Clean DB
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
 
 Shoulda::Matchers.configure do |config|
