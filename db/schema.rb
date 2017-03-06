@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305143045) do
+ActiveRecord::Schema.define(version: 20170305204029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,27 @@ ActiveRecord::Schema.define(version: 20170305143045) do
     t.index ["user_id"], name: "index_artworks_on_user_id", using: :btree
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "talk_id"
+    t.integer  "user_id"
+    t.string   "body",       limit: 140, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["talk_id"], name: "index_messages_on_talk_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
+  create_table "talks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "artwork_id"
+    t.integer  "status",     default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["artwork_id"], name: "index_talks_on_artwork_id", using: :btree
+    t.index ["user_id", "artwork_id"], name: "index_talks_on_user_id_and_artwork_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_talks_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "full_name",  limit: 100,             null: false
     t.string   "email",      limit: 100,             null: false
@@ -37,4 +58,8 @@ ActiveRecord::Schema.define(version: 20170305143045) do
   end
 
   add_foreign_key "artworks", "users"
+  add_foreign_key "messages", "talks"
+  add_foreign_key "messages", "users"
+  add_foreign_key "talks", "artworks"
+  add_foreign_key "talks", "users"
 end

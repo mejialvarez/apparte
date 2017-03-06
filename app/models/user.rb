@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :artworks
+  has_many :talks
+  has_many :messages
 
   enum role: [:client, :artist]
 

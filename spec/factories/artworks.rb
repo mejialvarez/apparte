@@ -10,7 +10,7 @@ FactoryGirl.define do
       name nil
       description nil
       price nil
-      qualification nil
+      score nil
     end
   end
 end
