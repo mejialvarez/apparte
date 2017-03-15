@@ -18,6 +18,10 @@ gem 'faker', '~> 1.7', '>= 1.7.3'
 gem 'rack-cors', :require => 'rack/cors'
 # Allows you to generate your JSON in an object-oriented
 gem 'active_model_serializers'
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1', '>= 3.1.11'
+# A pure ruby implementation of the JSON Web Token standard
+gem 'jwt', '~> 1.5', '>= 1.5.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
