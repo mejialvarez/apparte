@@ -1,5 +1,3 @@
-require 'jwt'
-
 class JsonWebToken
   class << self
     ALGORITHM = 'HS256'
