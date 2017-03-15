@@ -1,10 +1,10 @@
 class Api::V1::MessagesController < ApplicationController
   def create
-    message = User.first.messages.new(message_params)
+    message = current_user.messages.new(message_params)
     if message.save
-      render json: message, status: 201
+      render json: message, status: :created
     else
-      render json: { errors: message.errors }, status: 422
+      render json: { errors: message.errors }, status: :unprocessable_entity
     end
   end
 
