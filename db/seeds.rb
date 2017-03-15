@@ -4,6 +4,7 @@
   user.email = Faker::Internet.email
   user.phone = Faker::Number.number(10)
   user.role = User.roles[role]
+  user.password = '12345678'
 
   p user.errors.messages unless user.save
 end
