@@ -8,9 +8,6 @@ FactoryGirl.define do
 
     factory :invalid_artwork do
       name nil
-      description nil
-      price nil
-      score nil
     end
   end
 end

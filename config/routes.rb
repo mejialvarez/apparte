@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/login', to: "sessions#create"
 
-      resources :artworks, only: [:index] do
+      resources :artworks, only: [:index, :create] do
         resources :talks, only: [:create]
       end
 
