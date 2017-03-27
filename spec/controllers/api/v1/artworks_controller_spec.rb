@@ -3,8 +3,12 @@ require 'rails_helper'
 describe Api::V1::ArtworksController do
   let(:artist) { create(:artist) }
 
+  before :each do
+    sign_in(artist)
+  end
+
   describe 'GET #index' do
-    before(:each) do
+    before :each do
       4.times { create(:artwork, user_id: artist.id) }
       get :index
     end

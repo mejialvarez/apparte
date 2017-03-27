@@ -4,6 +4,11 @@ describe Api::V1::MessagesController, type: :controller do
   let!(:talk) { create(:talk) }
   let(:message_params) { attributes_for(:message) }
   let(:message_invalid_params) { attributes_for(:invalid_message) }
+  let(:client) { create(:client) }
+
+  before :each do
+    sign_in(client)
+  end
 
   describe 'POST #create' do
     context 'with valid params' do

@@ -4,6 +4,7 @@ FactoryGirl.define do
     full_name { Faker::Name.name }
     email { Faker::Internet.email }
     phone { Faker::Number.number(9) }
+    password 'password'
 
     factory :client do
       role User.roles[:client]

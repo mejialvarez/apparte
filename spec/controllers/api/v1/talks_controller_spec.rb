@@ -5,6 +5,10 @@ describe Api::V1::TalksController, type: :controller do
   let(:client) { create(:client) }
   let(:talk) { create(:talk, user_id: client.id, artwork_id: artwork.id) }
 
+  before :each do
+    sign_in(client)
+  end
+
   describe 'GET #index' do
     before(:each) do
       talk
