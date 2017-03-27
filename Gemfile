@@ -22,6 +22,8 @@ gem 'active_model_serializers'
 gem 'bcrypt', '~> 3.1', '>= 3.1.11'
 # A pure ruby implementation of the JSON Web Token standard
 gem 'jwt', '~> 1.5', '>= 1.5.4'
+# Add a comment summarizing the current schema
+gem 'annotate'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
