@@ -24,6 +24,8 @@ class Talk < ApplicationRecord
 
   enum status: [:open, :close]
 
+  scope :filter_artwork, ->(artwork_id) { where(artwork_id: artwork_id) }
+
   validates :user_id, presence: true, uniqueness: { scope: [:user_id, :artwork_id] }
   validates :artwork_id, presence: true
 end

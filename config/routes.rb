@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       post '/login', to: "sessions#create"
 
       resources :artworks, only: [:index, :create] do
-        resources :talks, only: [:create]
+        resources :talks, only: [:index, :create]
         concerns :votable, only: [:create, :destroy], votable_type: 'Artwork'
       end
 

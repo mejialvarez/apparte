@@ -1,7 +1,16 @@
 class Api::V1::TalksController < ApplicationController
 
   def index
-    render json: current_user.talks.order(created_at: :desc)
+    if params[:artwork_id].present?
+      talks = current_user
+      .talks
+      .filter_artwork(params[:artwork_id])
+      .order(created_at: :desc)
+      
+      render json: talks
+    else
+      render json: current_user.talks.order(created_at: :desc)
+    end
   end
 
   def show
