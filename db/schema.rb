@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314221848) do
+ActiveRecord::Schema.define(version: 20170404203656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20170314221848) do
     t.string   "name",        limit: 100, null: false
     t.string   "description", limit: 500, null: false
     t.bigint   "price",                   null: false
-    t.integer  "score"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.index ["user_id"], name: "index_artworks_on_user_id", using: :btree
@@ -58,9 +57,21 @@ ActiveRecord::Schema.define(version: 20170314221848) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.string   "votable_type"
+    t.integer  "votable_id"
+    t.integer  "user_id"
+    t.integer  "score",        default: 0, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["user_id"], name: "index_votes_on_user_id", using: :btree
+    t.index ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id", using: :btree
+  end
+
   add_foreign_key "artworks", "users"
   add_foreign_key "messages", "talks"
   add_foreign_key "messages", "users"
   add_foreign_key "talks", "artworks"
   add_foreign_key "talks", "users"
+  add_foreign_key "votes", "users"
 end

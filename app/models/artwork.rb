@@ -7,7 +7,6 @@
 #  name        :string(100)      not null
 #  description :string(500)      not null
 #  price       :integer          not null
-#  score       :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
@@ -18,11 +17,9 @@
 
 class Artwork < ApplicationRecord
   belongs_to :user
-
-  enum score: [:bad, :regular, :good, :excellent]
+  has_many :votes, as: :votable, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 500 }
   validates :price, numericality: { only_integer: true }
-  validates :score, inclusion:  { in: Artwork.scores.keys }, if: :score?
 end
