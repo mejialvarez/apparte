@@ -6,8 +6,9 @@ class Api::V1::SessionsController < ApplicationController
 
     if user.present? && user.authenticate(auth_params[:password])
       jwt = JsonWebToken.encode({ user: user.id })
+      json_response = { user: user.attributes.merge(jwt: jwt) }
       
-      render json: { jwt: jwt }, status: :ok
+      render json: json_response, status: :ok
     else
       render json: { errors: ['Invalid Email/Password'] }, status: :unauthorized
     end
