@@ -18,6 +18,7 @@
 class Artwork < ApplicationRecord
   belongs_to :user
   has_many :votes, as: :votable, dependent: :destroy
+  has_one :talk
 
   validates :name, presence: true, length: { maximum: 100 }
   validates :description, presence: true, length: { maximum: 500 }
