@@ -6,7 +6,9 @@ class Api::V1::SessionsController < ApplicationController
 
     if user.present? && user.authenticate(auth_params[:password])
       jwt = JsonWebToken.encode({ user: user.id })
-      json_response = { user: user.attributes.merge(jwt: jwt) }
+      json_response = { 
+        user: user.attributes.slice("id", "full_name", "role").merge(jwt: jwt) 
+      }
       
       render json: json_response, status: :ok
     else
