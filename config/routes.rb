@@ -16,7 +16,7 @@ Rails.application.routes.draw do
         resources :messages, only: [:create]
       end
 
-      resources :users, only: [:index] do
+      resources :users, only: [:index, :create] do
         concerns :votable, only: [:create, :destroy], votable_type: 'User'
       end
     end
